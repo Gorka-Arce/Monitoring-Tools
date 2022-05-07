@@ -3,10 +3,11 @@ services:
   telegraf:
     image: mihudec/telegraf-snmp-net
     container_name: telegraf
+    env_file: .tig.env
     restart: on-failure
     volumes:
    # - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-     - telegraf_data:/var/lib/telegraf
+     - telegraf_data:/home/usuario/ws/usuario/TIGstack-git1/volumes/telegraf
     depends_on:
       - influxdb
     links:
@@ -30,7 +31,7 @@ services:
     ports:
       - '8086:8086'
     volumes:
-      - influxdb_data:/var/lib/influxdb
+      - influxdb_data:/home/usuario/ws/usuario/TIGstack-git1/volumes/influxdb
 
   grafana:
     image: grafana/grafana
@@ -47,7 +48,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana_data:/home/usuario/ws/usuario/TIGstack-git1/volumes/grafana
 
 volumes:
   grafana_data: {}
